@@ -2,7 +2,6 @@
    <extend>../com.idega.core.bundle/block-dependencies.xml</extend>
     <pomVersion>3</pomVersion>
     <name>idegaWeb Category Block</name>
-    <groupId>com.idega.block</groupId>
     <artifactId>com.idega.block.category</artifactId>
     <currentVersion>2.0</currentVersion>
     <organization>
