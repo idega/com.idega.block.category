@@ -10,7 +10,7 @@
         <logo>http://support.idega.is/images/idegalogo2.gif</logo>
     </organization>
     <inceptionYear>2000</inceptionYear>
-    <shortDescription>idegaWeb Builder is</shortDescription>
+    <shortDescription>Category</shortDescription>
     <issueTrackingUrl>http://issues.idega.is</issueTrackingUrl>
     <repository>
         <connection>scm:cvs:ext:tryggvil@einstein.idega.is:/idega/cvs:bundles/com.idega.builder.bundle</connection>
