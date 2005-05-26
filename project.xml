@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns:j="jelly:core" xmlns:ant="jelly:ant" xmlns:u="jelly:util">
   <extend>${base.project.dir}/block-dependencies.xml</extend>
   <pomVersion>3</pomVersion>
@@ -6,6 +7,7 @@
   <artifactId>com.idega.block.category</artifactId>
   <currentVersion>1.0.1</currentVersion>
   <!--currentVersion>1.1-SNAPSHOT</currentVersion-->
+
   <inceptionYear>2000</inceptionYear>
   <shortDescription>Category</shortDescription>
   <versions>
@@ -13,6 +15,11 @@
       <id>1.0</id>
       <name>1.0</name>
       <tag>CATEGORY_1_0</tag>
+    </version>
+    <version>
+      <id>1.0.1</id>
+      <name>1.0.1</name>
+      <tag>CATEGORY_1_0_1</tag>
     </version>
   </versions>
   <branches/>
@@ -52,11 +59,13 @@
       <artifactId>com.idega.core</artifactId>
       <!--HELPER--><version>3.0.5</version><!--HELPER-->
       <!--HELPERversion>SNAPSHOT</versionHELPER-->
-      
+
       <type>jar</type>
       <url>http://www.idega.com/</url>
       <properties>
-        <j:if test="${idegaweb.project.source.dependent}=='true'}"><eclipse.dependency>true</eclipse.dependency></j:if>
+        <j:if test="${idegaweb.project.source.dependent}==&apos;true&apos;}">
+          <eclipse.dependency>true</eclipse.dependency>
+        </j:if>
       </properties>
     </dependency>
   </dependencies>
