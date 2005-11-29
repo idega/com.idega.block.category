@@ -103,7 +103,7 @@ public class CategoryServiceBean extends  IBOServiceBean implements CategoryServ
 	}
 	public void removeCategory(int iCategoryId, int iObjectInstanceId) throws RemoteException {
 		try {
-			ICCategory nc = (ICCategory) CategoryFinder.getInstance().getCategory(iCategoryId);
+			ICCategory nc = CategoryFinder.getInstance().getCategory(iCategoryId);
 			if (iObjectInstanceId > 0) {
 				ICObjectInstance obj =
 					(

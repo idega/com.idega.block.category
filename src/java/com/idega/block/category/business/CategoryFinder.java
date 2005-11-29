@@ -146,7 +146,7 @@ public class CategoryFinder {
 	 */
 	public int getObjectInstanceIdFromCategoryId(int iCategoryId) {
 		try {
-			ICCategory nw = (ICCategory) getCategory(iCategoryId);
+			ICCategory nw = getCategory(iCategoryId);
 			List L =
 				EntityFinder.findRelated(
 					nw,
@@ -250,7 +250,7 @@ public class CategoryFinder {
 			List L =
 				EntityFinder.findRelated(
 					eObjectInstance,
-					(IDOLegacyEntity) com.idega.block.category.data.ICCategoryBMPBean.getStaticInstance(ICCategory.class));
+					com.idega.block.category.data.ICCategoryBMPBean.getStaticInstance(ICCategory.class));
 			if (L != null) {
 				return ((IDOLegacyEntity) L.get(0)).getID();
 			}
@@ -356,7 +356,7 @@ public class CategoryFinder {
 			List L =
 				EntityFinder.getInstance().findRelated(
 					obj,
-					(ICCategory) com.idega.block.category.data.ICCategoryBMPBean.getStaticInstance(ICCategory.class));
+					com.idega.block.category.data.ICCategoryBMPBean.getStaticInstance(ICCategory.class));
 			return L;
 		}
 		catch (Exception ex) {
