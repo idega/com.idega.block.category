@@ -1,5 +1,4 @@
 package com.idega.block.category.presentation;
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.Iterator;
@@ -13,7 +12,6 @@ import com.idega.business.IBOLookup;
 import com.idega.business.IBOLookupException;
 import com.idega.core.builder.business.ICDynamicPageTriggerCopySession;
 import com.idega.core.builder.business.ICDynamicPageTriggerInheritable;
-import com.idega.core.business.ICApplicationBindingBusiness;
 import com.idega.data.IDOLookup;
 import com.idega.presentation.Block;
 import com.idega.presentation.IWContext;
@@ -39,17 +37,7 @@ public abstract class CategoryBlock extends Block implements ICDynamicPageTrigge
 	public CategoryBlock(){
 		IWContext iwc = IWContext.getInstance();
 		if(iwc!=null){
-			try {
-				ICApplicationBindingBusiness applicationBindingBusiness = (ICApplicationBindingBusiness)  IBOLookup.getServiceInstance(iwc,ICApplicationBindingBusiness.class);
-				String value = applicationBindingBusiness.get("autocreate_categories");
-				if(value != null){
-					autocreate = Boolean.getBoolean(value);
-				}
-			}
-			catch (IOException ex) {
-				getLogger().warning("[CategoryBlock] Could not get parameter autocreate_categories");
-				// do nothing keep old value
-			}
+			autocreate = iwc.getApplicationSettings().getBoolean("autocreate_categories");
 		}
 	}
 	
