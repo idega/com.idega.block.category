@@ -354,7 +354,7 @@ public class CategoryFinder {
 			//ICCategoryICObjectInstanceHome home = (ICCategoryICObjectInstanceHome) IDOLookup.getHome(ICCategoryICObjectInstance.class);
 			//return home.getListOfCategoryForObjectInstance(obj);
 			List L =
-				EntityFinder.getInstance().findRelated(
+				EntityFinder.findRelated(
 					obj,
 					com.idega.block.category.data.ICCategoryBMPBean.getStaticInstance(ICCategory.class));
 			return L;
