@@ -30,8 +30,6 @@ public class ICInformationCategoryTranslationBMPBean extends GenericEntity imple
 	public final static String COLUMNNAME_SUPER_CAT = "SUPER_CAT_ID";
 	public final static String COLUMNNAME_LOCALE = "LOCALE_ID";
 	
-	private ICInformationCategory _superCatEntity = null;
-
 	/**
 	 * 
 	 */

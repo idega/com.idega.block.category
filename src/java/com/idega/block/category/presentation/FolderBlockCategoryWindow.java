@@ -67,8 +67,6 @@ public class FolderBlockCategoryWindow extends IWAdminWindow {
 	protected Image tree_image_M, tree_image_L, tree_image_T;
 	protected IWResourceBundle iwrb;
 	protected IWBundle iwb, core;
-	private int iObjInsId = -1;
-	private int iUserId = -1;
 	protected boolean formAdded = false;
 	protected int row = 1;
 	protected FolderBlockBusiness _folderblockBusiness = null;

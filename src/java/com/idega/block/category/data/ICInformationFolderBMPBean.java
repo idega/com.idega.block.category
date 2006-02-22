@@ -405,16 +405,6 @@ public class ICInformationFolderBMPBean extends com.idega.data.CacheableEntityBM
 	}
 
 	/**
-	 *@param  userID  The new deletedBy value
-	 */
-	private void setDeletedBy(int userID) {
-		//    if (id == -1)
-		//      setColumn(getColumnDeletedBy(),(Object)null);
-		//    else
-		setColumn(getColumnDeletedBy(), userID);
-	}
-
-	/**
 	 *@return    The deletedWhen value
 	 */
 	public Timestamp getDeletedWhen() {

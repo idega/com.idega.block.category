@@ -306,23 +306,7 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 		sql.append(" and tree.").append("child_").append(getIDColumnName()).append(" is null ");
 		return sql.toString();
 	}
-	/**
-	 * select * from IC_CATEGORY where CAT_TYPE= 'news'  and IC_CATEGORY_ID not in ( select child_IC_CATEGORY_ID from IC_CATEGORY_tree )"
-	 * 
-	 * @param type
-	 * @return
-	 */
-	private String getRootsNestedSQL(String type) {
-		StringBuffer sql = new StringBuffer("select * from ");
-		sql.append(getEntityTableName());
-
-		sql.append(" where ").append(getColumnType()).append("= '").append(type).append("' ");
-		sql.append(" and ").append(getIDColumnName()).append(" not in (");
-		sql.append(" select ").append("child_").append(getIDColumnName());
-		sql.append(" from ").append(getEntityTableName()).append("_tree )");
-		return sql.toString();
-	}
-
+	
 	public Collection ejbFindAllByObjectInstance(int iObjectInstanceID) throws FinderException {
 		ICObjectInstance obj = ICObjectBusiness.getInstance().getICObjectInstance(iObjectInstanceID);
 		return ejbFindAllByObjectInstance(obj);
