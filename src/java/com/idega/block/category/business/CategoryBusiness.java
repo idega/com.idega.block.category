@@ -261,7 +261,7 @@ public class CategoryBusiness {
 				
 				// Allows only one category per instanceId
 				if (!allowMultible)
-					objIns.removeFrom((ICCategory) com.idega.block.category.data.ICCategoryBMPBean.getEntityInstance(ICCategory.class));
+					objIns.removeFrom((ICCategory) GenericEntity.getEntityInstance(ICCategory.class));
 				Cat.addTo(objIns, TREE_ORDER_COLUMN_NAME, String.valueOf(orderNumber));
 			}
 			t.commit();

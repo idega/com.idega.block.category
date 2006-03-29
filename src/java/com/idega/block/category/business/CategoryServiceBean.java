@@ -21,6 +21,7 @@ import com.idega.business.IBOServiceBean;
 import com.idega.core.component.business.ICObjectBusiness;
 import com.idega.core.component.data.ICObjectInstance;
 import com.idega.core.component.data.ICObjectInstanceHome;
+import com.idega.data.GenericEntity;
 import com.idega.data.IDOLookup;
 import com.idega.util.IWTimestamp;
 
@@ -268,7 +269,7 @@ public class CategoryServiceBean extends  IBOServiceBean implements CategoryServ
 				// Allows only one category per instanceId
 				if (!allowMultible)
 					objIns.removeFrom(
-						(ICCategory) com.idega.block.category.data.ICCategoryBMPBean.getEntityInstance(ICCategory.class));
+						(ICCategory) GenericEntity.getEntityInstance(ICCategory.class));
 				Cat.addTo(objIns, "TREE_ORDER", String.valueOf(orderNumber));
 			}
 			
