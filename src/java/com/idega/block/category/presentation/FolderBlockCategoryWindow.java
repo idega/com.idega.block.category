@@ -273,8 +273,6 @@ public class FolderBlockCategoryWindow extends IWAdminWindow {
 			if (parent > 0) {
 				ICInformationCategory cat = _folderblockBusiness.getCategory(parent);
 				T.add(formatText(iwrb.getLocalizedString("create_child_category_under", "Create child under") + " " + cat.getName()), 2, row);
-				;
-
 			} else {
 				T.add(formatText(iwrb.getLocalizedString("create_root_category", "Create new root category")), 2, row);
 			}
