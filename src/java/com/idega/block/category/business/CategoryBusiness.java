@@ -24,8 +24,9 @@ public class CategoryBusiness {
 	private static CategoryBusiness categoryBusiness;
 	
 	public static CategoryBusiness getInstance() {
-		if (categoryBusiness == null)
+		if (categoryBusiness == null) {
 			categoryBusiness = new CategoryBusiness();
+		}
 		return categoryBusiness;
 	}
 	
@@ -39,8 +40,9 @@ public class CategoryBusiness {
 			}
 			return true;
 		}
-		else
+		else {
 			return false;
+		}
 	}
 	
 	public boolean disconnectCategory(ICCategory Cat, int iObjectInstanceId) {
@@ -87,8 +89,9 @@ public class CategoryBusiness {
 			}
 			return true;
 		}
-		else
+		else {
 			return false;
+		}
 	}
 	
 	public void deleteCategory(int iCategoryId) throws Exception {
@@ -166,8 +169,9 @@ public class CategoryBusiness {
 		try {
 			ICCategoryHome catHome = (ICCategoryHome) IDOLookup.getHomeLegacy(ICCategory.class);
 			ICCategory Cat = catHome.create();
-			if (iCategoryId > 0)
+			if (iCategoryId > 0) {
 				Cat = CategoryFinder.getInstance().getCategory(iCategoryId);
+			}
 			Cat.setName(sName);
 			Cat.setDescription(sDesc);
 			Cat.setType(type);
@@ -260,8 +264,9 @@ public class CategoryBusiness {
 				
 				
 				// Allows only one category per instanceId
-				if (!allowMultible)
+				if (!allowMultible) {
 					objIns.removeFrom((ICCategory) GenericEntity.getEntityInstance(ICCategory.class));
+				}
 				Cat.addTo(objIns, TREE_ORDER_COLUMN_NAME, String.valueOf(orderNumber));
 			}
 			t.commit();

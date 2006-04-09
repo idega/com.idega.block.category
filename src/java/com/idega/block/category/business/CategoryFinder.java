@@ -183,8 +183,9 @@ public class CategoryFinder {
 					(com.idega.core.component.data.ICObjectInstanceHome) com.idega.data.IDOLookup.getHomeLegacy(
 						ICObjectInstance.class)).findByPrimaryKeyLegacy(
 					iObjectInstanceId);
-			if (obj == null)
+			if (obj == null) {
 				System.err.println("ic_object is null " + iObjectInstanceId);
+			}
 			id = getObjectInstanceCategoryId(obj);
 			if (id <= 0 && CreateNew) {
 				id = CategoryBusiness.getInstance().createCategory(iObjectInstanceId, type);

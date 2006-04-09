@@ -37,7 +37,7 @@ public abstract class CategoryBlock extends Block implements ICDynamicPageTrigge
 	public CategoryBlock(){
 		IWContext iwc = IWContext.getInstance();
 		if(iwc!=null){
-			autocreate = iwc.getApplicationSettings().getBoolean("autocreate_categories");
+			this.autocreate = iwc.getApplicationSettings().getBoolean("autocreate_categories");
 		}
 	}
 	
@@ -45,27 +45,28 @@ public abstract class CategoryBlock extends Block implements ICDynamicPageTrigge
 	 *  Returns the first Category bound to this instance
 	 */
 	public int getCategoryId() {
-		if (icCategoryId == -1 && icCategoryIds.length > 0)
-			icCategoryId = icCategoryIds[0];
-		return icCategoryId;
+		if (this.icCategoryId == -1 && this.icCategoryIds.length > 0) {
+			this.icCategoryId = this.icCategoryIds[0];
+		}
+		return this.icCategoryId;
 	}
 	/**
 	 *  Returns an array of Category ids from
 	 */
 	public int[] getCategoryIds() {
-		return icCategoryIds;
+		return this.icCategoryIds;
 	}
 	/**
 	 *  Sets the first categoryId
 	 */
 	public void setCategoryId(int iCategoryId) {
-		icCategoryId = iCategoryId;
+		this.icCategoryId = iCategoryId;
 	}
 	/**
 	 * Sets the Category ids bound to this instance
 	 */
 	public void setCategoryIds(int[] iCategoryIds) {
-		icCategoryIds = iCategoryIds;
+		this.icCategoryIds = iCategoryIds;
 	}
 	/**
 	 *  Turns Category autocreation on/off
@@ -81,7 +82,7 @@ public abstract class CategoryBlock extends Block implements ICDynamicPageTrigge
 	}
 
 	public boolean getOrderManually() {
-		return orderManually;
+		return this.orderManually;
 	}
 	/**
 	 * Turns Manual ordering fidus on/off
@@ -94,14 +95,14 @@ public abstract class CategoryBlock extends Block implements ICDynamicPageTrigge
 	 *  specified by default type
 	 */
 	public Collection getCategories(String type) {
-		return CategoryFinder.getInstance().getCategories(icCategoryIds, type);
+		return CategoryFinder.getInstance().getCategories(this.icCategoryIds, type);
 	}
 	/**
 	 *  Returns a collection of ICCategory objects bound to this instance
 	 *  @returns Collection
 	 */
 	public Collection getCategories() {
-		return CategoryFinder.getInstance().listOfCategoryForObjectInstanceId(getICObjectInstanceID(), orderManually);
+		return CategoryFinder.getInstance().listOfCategoryForObjectInstanceId(getICObjectInstanceID(), this.orderManually);
 		//      return CategoryFinder.getInstance().listOfCategoryForObjectInstanceId(getICObjectInstanceID());
 	}
 
@@ -110,7 +111,7 @@ public abstract class CategoryBlock extends Block implements ICDynamicPageTrigge
      *  @returns Collection
      */
     public Collection getRootCategories() {
-        return CategoryFinder.getInstance().listOfRootCategoryForObjectInstanceId(getICObjectInstanceID(), orderManually);
+        return CategoryFinder.getInstance().listOfRootCategoryForObjectInstanceId(getICObjectInstanceID(), this.orderManually);
         //      return CategoryFinder.getInstance().listOfCategoryForObjectInstanceId(getICObjectInstanceID());
     }
     
@@ -118,12 +119,12 @@ public abstract class CategoryBlock extends Block implements ICDynamicPageTrigge
 	protected void initCategory(IWContext iwc) {
 		//if (icCategoryId <= 0) {
 			if (iwc.isParameterSet(prmCategoryId)) {
-				icCategoryId = Integer.parseInt(iwc.getParameter(prmCategoryId));
-				icCategory = CategoryFinder.getInstance().getCategory(icCategoryId);
+				this.icCategoryId = Integer.parseInt(iwc.getParameter(prmCategoryId));
+				this.icCategory = CategoryFinder.getInstance().getCategory(this.icCategoryId);
 				//System.err.println("getting category from parameter:"+prmCategoryId+" cat: "+icCategory+" "+this.getClassName());
 			}
 			else if (getICObjectInstanceID() > 0) {
-				icCategoryIds = CategoryFinder.getInstance().getObjectInstanceCategoryIds(getICObjectInstanceID(), autocreate, getCategoryType());
+				this.icCategoryIds = CategoryFinder.getInstance().getObjectInstanceCategoryIds(getICObjectInstanceID(), this.autocreate, getCategoryType());
 				//System.err.println("getting category from instance: "+getICObjectInstanceID()+" cat: "+icCategory+" "+this.getClassName());
 				//icCategoryId = CategoryFinder.getObjectInstanceCategoryId(getICObjectInstanceID(),autocreate,getCategoryType());
 			}
@@ -136,7 +137,7 @@ public abstract class CategoryBlock extends Block implements ICDynamicPageTrigge
 		CategoryBlock obj = null;
 		try {
 			obj = (CategoryBlock) super.clone();
-			obj.icCategory = icCategory;
+			obj.icCategory = this.icCategory;
 		}
 		catch (Exception ex) {
 			ex.printStackTrace(System.err);
@@ -156,10 +157,10 @@ public abstract class CategoryBlock extends Block implements ICDynamicPageTrigge
 		if (getMultible()) {
 			L.addParameter(CategoryWindow.prmMulti, "true");
 		}
-		if (orderManually) {
+		if (this.orderManually) {
 			L.addParameter(CategoryWindow.prmOrder, "true");
 		}
-		if (invalidateBlockCache && !getCacheKey().equals(IW_BLOCK_CACHE_KEY)) {
+		if (this.invalidateBlockCache && !getCacheKey().equals(IW_BLOCK_CACHE_KEY)) {
 			//      L.addParameter(CategoryWindow.prmCategoryId,getCacheKey());
 			//      L.addParameter(CategoryWindow.prmCacheClearKey ,getCacheKey());
 			L.addParameter(CategoryWindow.prmCacheClearKey, super.getDerivedCacheKey());
