@@ -6,7 +6,6 @@
   <name>idegaWeb Category Block</name>
   <artifactId>com.idega.block.category</artifactId>
   <currentVersion>3.1.0</currentVersion>
-
   <inceptionYear>2000</inceptionYear>
   <shortDescription>Category</shortDescription>
   <versions>
@@ -19,6 +18,11 @@
       <id>1.0.1</id>
       <name>1.0.1</name>
       <tag>CATEGORY_1_0_1</tag>
+    </version>
+    <version>
+      <id>3.1.0</id>
+      <name>3.1.0</name>
+      <tag>CATEGORY_3_1_0</tag>
     </version>
   </versions>
   <branches/>
@@ -57,11 +61,12 @@
       <groupId>bundles</groupId>
       <artifactId>com.idega.core</artifactId>
       <!--version>3.0.5</version-->
+
       <version>3.1.0</version>
       <type>jar</type>
       <url>http://www.idega.com/</url>
       <properties>
-          <eclipse.dependency>${idegaweb.project.source.dependent}</eclipse.dependency>
+        <eclipse.dependency>${idegaweb.project.source.dependent}</eclipse.dependency>
       </properties>
     </dependency>
   </dependencies>
