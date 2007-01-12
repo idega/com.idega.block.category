@@ -67,6 +67,8 @@ public class FolderBlockCategoryWindow extends IWAdminWindow {
 	protected Image tree_image_M, tree_image_L, tree_image_T;
 	protected IWResourceBundle iwrb;
 	protected IWBundle iwb, core;
+	private int iObjInsId = -1;
+	private int iUserId = -1;
 	protected boolean formAdded = false;
 	protected int row = 1;
 	protected FolderBlockBusiness _folderblockBusiness = null;
@@ -275,6 +277,8 @@ public class FolderBlockCategoryWindow extends IWAdminWindow {
 			if (parent > 0) {
 				ICInformationCategory cat = this._folderblockBusiness.getCategory(parent);
 				T.add(formatText(this.iwrb.getLocalizedString("create_child_category_under", "Create child under") + " " + cat.getName()), 2, this.row);
+				;
+
 			} else {
 				T.add(formatText(this.iwrb.getLocalizedString("create_root_category", "Create new root category")), 2, this.row);
 			}

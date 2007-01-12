@@ -13,6 +13,7 @@ import com.idega.business.IBOLookupException;
 import com.idega.core.builder.business.ICDynamicPageTriggerCopySession;
 import com.idega.core.builder.business.ICDynamicPageTriggerInheritable;
 import com.idega.data.IDOLookup;
+import com.idega.idegaweb.IWProperty;
 import com.idega.presentation.Block;
 import com.idega.presentation.IWContext;
 import com.idega.presentation.text.Link;
@@ -34,10 +35,19 @@ public abstract class CategoryBlock extends Block implements ICDynamicPageTrigge
 	protected boolean orderManually = false;
 	protected final static String METADATAKEY_CATEGORY_MAIN_VIEWER_PAGE = "category_main_viewer_page";
 	
+	
 	public CategoryBlock(){
 		IWContext iwc = IWContext.getInstance();
 		if(iwc!=null){
-			this.autocreate = iwc.getApplicationSettings().getBoolean("autocreate_categories");
+			IWProperty property = iwc.getApplicationSettings().getIWProperty("autocreate_categories");
+			if(property != null){
+				try {
+					this.autocreate = Boolean.getBoolean(property.getValue());
+				}
+				catch (RuntimeException e) {
+					//Do nothing, keep old value;
+				}
+			}
 		}
 	}
 	

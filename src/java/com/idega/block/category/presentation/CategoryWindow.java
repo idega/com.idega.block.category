@@ -17,6 +17,7 @@ import com.idega.core.localisation.business.ICLocaleBusiness;
 import com.idega.core.localisation.presentation.ICLocalePresentation;
 import com.idega.data.IDOLookup;
 import com.idega.idegaweb.IWBundle;
+import com.idega.idegaweb.IWMainApplication;
 import com.idega.idegaweb.IWResourceBundle;
 import com.idega.idegaweb.presentation.IWAdminWindow;
 import com.idega.presentation.IWContext;
@@ -63,6 +64,8 @@ public class CategoryWindow extends IWAdminWindow {
 	protected Image tree_image_M,tree_image_L,tree_image_T;
 	protected IWResourceBundle iwrb;
 	protected IWBundle iwb, core;
+	private int iObjInsId = -1;
+	private int iUserId = -1;
 	protected boolean formAdded = false;
 	protected int row = 1;
 	protected CategoryService catServ = null;
@@ -79,8 +82,8 @@ public class CategoryWindow extends IWAdminWindow {
 	}
 	protected void clearCache(IWContext iwc) {
 		if (getCacheKey(iwc) != null) {
-			if (iwc.getIWMainApplication().getIWCacheManager().isCacheValid(getCacheKey(iwc))) {
-				iwc.getIWMainApplication().getIWCacheManager().invalidateCache(getCacheKey(iwc));
+			if (IWMainApplication.getIWCacheManager().isCacheValid(getCacheKey(iwc))) {
+				IWMainApplication.getIWCacheManager().invalidateCache(getCacheKey(iwc));
 			}
 		}
 	}
@@ -108,11 +111,11 @@ public class CategoryWindow extends IWAdminWindow {
 	    
 	    this.iSaveLocaleId = ICLocaleBusiness.getLocaleId(iwc.getApplicationSettings().getDefaultLocale());
 	    if(this.iSaveLocaleId == this.iLocaleId) {
-				this.iSaveLocaleId = -1;
-			}
-			else {
-				this.iSaveLocaleId = this.iLocaleId;
-			}
+			this.iSaveLocaleId = -1;
+		}
+		else {
+			this.iSaveLocaleId = this.iLocaleId;
+		}
 	    
 		Table T = new Table();
 		T.setCellpadding(0);
@@ -272,7 +275,7 @@ public class CategoryWindow extends IWAdminWindow {
 			T.mergeCells(2,this.row,6,this.row);
 			if(parent>0){
 				ICCategory cat = CategoryFinder.getInstance().getCategory(parent);
-				T.add(formatText(this.iwrb.getLocalizedString("create_child_category_under","Create child under")+" "+cat.getName()),2,this.row);
+				T.add(formatText(this.iwrb.getLocalizedString("create_child_category_under","Create child under")+" "+cat.getName()),2,this.row);;
 				
 			}
 			else{
