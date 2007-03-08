@@ -1,69 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns:j="jelly:core" xmlns:ant="jelly:ant"
-	xmlns:u="jelly:util">
-	<extend>${base.project.dir}/block-dependencies.xml</extend>
-	<pomVersion>3</pomVersion>
-	<name>idegaWeb Category Block</name>
-	<artifactId>com.idega.block.category</artifactId>
-	<currentVersion>3.1.1</currentVersion>
-	<inceptionYear>2000</inceptionYear>
-	<shortDescription>Category</shortDescription>
-	<versions>
-		<version>
-			<id>1.0</id>
-			<name>1.0</name>
-			<tag>CATEGORY_1_0</tag>
-		</version>
-		<version>
-			<id>1.0.1</id>
-			<name>1.0.1</name>
-			<tag>CATEGORY_1_0_1</tag>
-		</version>
-		<version>
-			<id>3.1.0</id>
-			<name>3.1.0</name>
-			<tag>CATEGORY_3_1_0</tag>
-		</version>
-	</versions>
-	<branches />
-	<developers>
-		<developer>
-			<name>Tryggvi Larusson</name>
-			<id>tryggvil</id>
-			<email>tryggvi@idega.is</email>
-			<organization>idega software</organization>
-			<roles />
-		</developer>
-		<developer>
-			<name>Pall Helgason</name>
-			<id>palli</id>
-			<email>palli@idega.is</email>
-			<organization>idega software</organization>
-			<roles />
-		</developer>
-		<developer>
-			<name>Eirikur Sveinn Hrafnsson</name>
-			<id>eiki</id>
-			<email>eiki@idega.is</email>
-			<organization>idega software</organization>
-			<roles />
-		</developer>
-		<developer>
-			<name>Thorhallur Helgason</name>
-			<id>laddi</id>
-			<email>laddi@idega.is</email>
-			<organization>idega software</organization>
-			<roles />
-		</developer>
-	</developers>
-	<dependencies>
-		<dependency>
-			<groupId>bundles</groupId>
-			<artifactId>com.idega.core</artifactId>
-			<version>3.1.39</version>
-			<type>jar</type>
-			<url>http://www.idega.com/</url>
-		</dependency>
-	</dependencies>
+<project xmlns:j="jelly:core" xmlns:ant="jelly:ant" xmlns:u="jelly:util">
+  <extend>${base.project.dir}/block-dependencies.xml</extend>
+  <pomVersion>3</pomVersion>
+  <name>idegaWeb Category Block</name>
+  <artifactId>com.idega.block.category</artifactId>
+  <currentVersion>3.1.1</currentVersion>
+  <inceptionYear>2000</inceptionYear>
+  <shortDescription>Category</shortDescription>
+  <versions>
+    <version>
+      <id>1.0</id>
+      <name>1.0</name>
+      <tag>CATEGORY_1_0</tag>
+    </version>
+    <version>
+      <id>1.0.1</id>
+      <name>1.0.1</name>
+      <tag>CATEGORY_1_0_1</tag>
+    </version>
+    <version>
+      <id>3.1.0</id>
+      <name>3.1.0</name>
+      <tag>CATEGORY_3_1_0</tag>
+    </version>
+    <version>
+      <id>3.1.1</id>
+      <name>3.1.1</name>
+      <tag>CATEGORY_3_1_1</tag>
+    </version>
+  </versions>
+  <branches/>
+  <developers>
+    <developer>
+      <name>Tryggvi Larusson</name>
+      <id>tryggvil</id>
+      <email>tryggvi@idega.is</email>
+      <organization>idega software</organization>
+      <roles/>
+    </developer>
+    <developer>
+      <name>Pall Helgason</name>
+      <id>palli</id>
+      <email>palli@idega.is</email>
+      <organization>idega software</organization>
+      <roles/>
+    </developer>
+    <developer>
+      <name>Eirikur Sveinn Hrafnsson</name>
+      <id>eiki</id>
+      <email>eiki@idega.is</email>
+      <organization>idega software</organization>
+      <roles/>
+    </developer>
+    <developer>
+      <name>Thorhallur Helgason</name>
+      <id>laddi</id>
+      <email>laddi@idega.is</email>
+      <organization>idega software</organization>
+      <roles/>
+    </developer>
+  </developers>
+  <dependencies>
+    <dependency>
+      <groupId>bundles</groupId>
+      <artifactId>com.idega.core</artifactId>
+      <version>3.1.39</version>
+      <type>jar</type>
+      <url>http://www.idega.com/</url>
+    </dependency>
+  </dependencies>
 </project>
