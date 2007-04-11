@@ -5,7 +5,7 @@
   <pomVersion>3</pomVersion>
   <name>idegaWeb Category Block</name>
   <artifactId>com.idega.block.category</artifactId>
-  <currentVersion>3.1.1</currentVersion>
+  <currentVersion>3.1.2</currentVersion>
   <inceptionYear>2000</inceptionYear>
   <shortDescription>Category</shortDescription>
   <versions>
@@ -65,7 +65,7 @@
     <dependency>
       <groupId>bundles</groupId>
       <artifactId>com.idega.core</artifactId>
-      <version>3.1.39</version>
+      <version>3.1.41</version>
       <type>jar</type>
       <url>http://www.idega.com/</url>
     </dependency>
