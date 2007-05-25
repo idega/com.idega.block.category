@@ -203,43 +203,46 @@ public abstract class CategoryBlock extends Block implements ICDynamicPageTrigge
 	}
 	
 	public boolean copyICObjectInstance(String pageKey,int newInstanceID, ICDynamicPageTriggerCopySession copySession) {
-		CategoryFinder finder = CategoryFinder.getInstance();
-		List categories = finder.listOfCategoryForObjectInstanceId(getICObjectInstanceID());
-		if(categories != null) {
-			try {
-				CategoryBusiness cb = CategoryBusiness.getInstance();
-				CategoryService service = (CategoryService) IBOLookup.getServiceInstance(copySession.getIWApplicationContext(),CategoryService.class);
-				int[] catIDs = new int[categories.size()];
-				int catIDIndex = 0;
-				for (Iterator iter = categories.iterator(); iter.hasNext();) {
-					try {
-						ICCategory category = (ICCategory) iter.next();
-						ICCategory newCategory = (ICCategory)copySession.getNewValue(CategoryBlock.class,category);
-						if(newCategory==null) {
-							newCategory = cb.createCategory(newInstanceID,getCategoryType(),category.getName(),category.getDescription());
-							copySession.setNewValue(CategoryBlock.class,category,newCategory);
-							service.storeCategoryToParent(newCategory.getID(),category.getID());
-							catIDs[catIDIndex++] = newCategory.getID();
-							if(copySession.hasRootPage()) {
-								newCategory.addMetaData(METADATAKEY_CATEGORY_MAIN_VIEWER_PAGE,pageKey);
-								newCategory.store();
+		if (autocreate) {
+			CategoryFinder finder = CategoryFinder.getInstance();
+			List categories = finder.listOfCategoryForObjectInstanceId(getICObjectInstanceID());
+			if(categories != null) {
+				try {
+					CategoryBusiness cb = CategoryBusiness.getInstance();
+					CategoryService service = (CategoryService) IBOLookup.getServiceInstance(copySession.getIWApplicationContext(),CategoryService.class);
+					int[] catIDs = new int[categories.size()];
+					int catIDIndex = 0;
+					for (Iterator iter = categories.iterator(); iter.hasNext();) {
+						try {
+							ICCategory category = (ICCategory) iter.next();
+							ICCategory newCategory = (ICCategory)copySession.getNewValue(CategoryBlock.class,category);
+							if(newCategory==null) {
+								newCategory = cb.createCategory(newInstanceID,getCategoryType(),category.getName(),category.getDescription());
+								copySession.setNewValue(CategoryBlock.class,category,newCategory);
+								service.storeCategoryToParent(newCategory.getID(),category.getID());
+								catIDs[catIDIndex++] = newCategory.getID();
+								if(copySession.hasRootPage()) {
+									newCategory.addMetaData(METADATAKEY_CATEGORY_MAIN_VIEWER_PAGE,pageKey);
+									newCategory.store();
+								}
+							}else {
+								catIDs[catIDIndex++] = newCategory.getID();
+								service.storeCategoryToParent(newCategory.getID(),category.getID());
 							}
-						}else {
-							catIDs[catIDIndex++] = newCategory.getID();
-							service.storeCategoryToParent(newCategory.getID(),category.getID());
+						} catch (RemoteException e) {
+							e.printStackTrace();
 						}
-					} catch (RemoteException e) {
-						e.printStackTrace();
 					}
+					cb.saveRelatedCategories(newInstanceID,catIDs);
+				} catch (IBOLookupException e) {
+					e.printStackTrace();
+					return false;
+				} catch (RemoteException e) {
+					e.printStackTrace();
+					return false;
 				}
-				cb.saveRelatedCategories(newInstanceID,catIDs);
-			} catch (IBOLookupException e) {
-				e.printStackTrace();
-				return false;
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
 			}
+			return true;
 		}
 		return true;
 	}
