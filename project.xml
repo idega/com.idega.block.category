@@ -5,7 +5,7 @@
   <pomVersion>3</pomVersion>
   <name>idegaWeb Category Block</name>
   <artifactId>com.idega.block.category</artifactId>
-  <currentVersion>3.1.2</currentVersion>
+  <currentVersion>3.1.3</currentVersion>
   <inceptionYear>2000</inceptionYear>
   <shortDescription>Category</shortDescription>
   <versions>
