@@ -16,6 +16,7 @@ import com.idega.data.IDOLookup;
 import com.idega.presentation.Block;
 import com.idega.presentation.IWContext;
 import com.idega.presentation.text.Link;
+import com.idega.util.CoreUtil;
 /**
  * Title:
  * Description:
@@ -35,7 +36,7 @@ public abstract class CategoryBlock extends Block implements ICDynamicPageTrigge
 	protected final static String METADATAKEY_CATEGORY_MAIN_VIEWER_PAGE = "category_main_viewer_page";
 	
 	public CategoryBlock(){
-		IWContext iwc = IWContext.getInstance();
+		IWContext iwc = CoreUtil.getIWContext();
 		if(iwc!=null){
 			this.autocreate = iwc.getApplicationSettings().getBoolean("autocreate_categories");
 		}
