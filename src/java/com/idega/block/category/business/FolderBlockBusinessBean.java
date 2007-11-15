@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 
 import javax.ejb.CreateException;
 import javax.ejb.FinderException;
@@ -15,6 +16,7 @@ import com.idega.block.category.data.ICInformationCategoryHome;
 import com.idega.block.category.data.ICInformationCategoryTranslation;
 import com.idega.block.category.data.ICInformationCategoryTranslationHome;
 import com.idega.block.category.data.ICInformationFolder;
+import com.idega.block.category.data.InformationCategory;
 import com.idega.business.IBOLookup;
 import com.idega.business.IBOLookupException;
 import com.idega.business.IBOServiceBean;
@@ -84,7 +86,18 @@ public class FolderBlockBusinessBean extends IBOServiceBean implements FolderBlo
 
 	public List getInstanceCategories(int icObjectInstanceId) {
 		try {
-			List l = EntityFinder.findRelated(((com.idega.core.component.data.ICObjectInstanceHome)com.idega.data.IDOLookup.getHomeLegacy(ICObjectInstance.class)).findByPrimaryKeyLegacy(icObjectInstanceId), GenericEntity.getStaticInstance(ICInformationCategory.class));
+			List l = EntityFinder.findRelated(((ICObjectInstanceHome) IDOLookup.getHomeLegacy(ICObjectInstance.class)).findByPrimaryKeyLegacy(icObjectInstanceId), GenericEntity.getStaticInstance(ICInformationCategory.class));
+			if (l!= null) {
+				List r = new Vector();
+				Iterator iter = l.iterator();
+				while (iter.hasNext()) {
+					InformationCategory item = (InformationCategory) iter.next();
+					if (!item.getDeleted() && item.getValid()) {
+						r.add(item);
+					}
+				}
+				return r;
+			}
 			return l;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
