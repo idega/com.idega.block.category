@@ -19,6 +19,7 @@
      -->
     <connection>scm:cvs:ext:civilis@code.idega.com:/idega/cvs:com.idega.block.legacy/com.idega.block.category/</connection>
     <developerConnection>scm:cvs:ext:civilis@code.idega.com:/idega/cvs:com.idega.block.legacy/com.idega.block.category/</developerConnection>
+    <tag>com_idega_block_addon_super-4_0_0</tag>
   </scm>
   <developers>
     <developer>
