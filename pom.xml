@@ -9,7 +9,7 @@
   <groupId>com.idega.block.legacy</groupId>
   <artifactId>com.idega.block.category</artifactId>
   <packaging>jar</packaging>
-  <version>4.0.1-SNAPSHOT</version>
+  <version>4.0.1</version>
   <inceptionYear>2000</inceptionYear>
   <description>Category</description>
   <scm>
@@ -19,6 +19,7 @@
      -->
     <connection>scm:cvs:ext:civilis@code.idega.com:/idega/cvs:com.idega.block.legacy/com.idega.block.category/</connection>
     <developerConnection>scm:cvs:ext:civilis@code.idega.com:/idega/cvs:com.idega.block.legacy/com.idega.block.category/</developerConnection>
+    <tag>com_idega_block_addon_super-4_0_1</tag>
   </scm>
   <developers>
     <developer>
