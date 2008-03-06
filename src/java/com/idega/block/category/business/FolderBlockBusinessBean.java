@@ -172,10 +172,11 @@ public class FolderBlockBusinessBean extends IBOServiceBean implements FolderBlo
 	}
 
 	public ICInformationCategory createICInformationCategory(IWContext iwc, int localeID, String name, String description, String type, int ICObjectId, int ownerFolder) {
+		
+		System.out.println("FolderBlockBusiness: ICObjectId  = " + ICObjectId);
+		
 		ICInformationCategory cat = null;
 		try {
-			int saveLocaleID = localeID;
-
 			cat = this.getCategoryHome().create();
 			if (name != null) {
 				cat.setName(name);
@@ -194,10 +195,11 @@ public class FolderBlockBusinessBean extends IBOServiceBean implements FolderBlo
 			cat.setCreated(IWTimestamp.getTimestampRightNow());
 			cat.store();
 			
-			
+			int saveLocaleID = ((Integer) cat.getPrimaryKey()).intValue();
+
 			// create translation record
-			if (saveLocaleID == -1) {
-				saveLocaleID = ICLocaleBusiness.getLocaleId(iwc.getCurrentLocale());
+			if (localeID == -1) {
+				localeID = ICLocaleBusiness.getLocaleId(iwc.getCurrentLocale());
 			}
 			createICInformationCategoryTranslation(saveLocaleID, name, description, localeID);
 
@@ -215,6 +217,8 @@ public class FolderBlockBusinessBean extends IBOServiceBean implements FolderBlo
 
 
 	public ICInformationCategoryTranslation createICInformationCategoryTranslation(int categoryID, String name, String description, int localeID){
+		System.out.println("FolderBlockBusiness: categoryID" + categoryID);
+		
 		try {
 			ICInformationCategoryTranslation cat = this.getCategoryTranslationHome().create();
 			cat.setLocale(localeID);

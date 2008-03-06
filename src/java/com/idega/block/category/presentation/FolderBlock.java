@@ -9,8 +9,11 @@ import com.idega.block.category.data.InformationCategory;
 import com.idega.block.category.data.InformationFolder;
 import com.idega.business.IBOLookup;
 import com.idega.business.IBOLookupException;
+import com.idega.core.component.data.ICObject;
+import com.idega.core.component.data.ICObjectHome;
 import com.idega.core.localisation.business.ICLocaleBusiness;
 import com.idega.core.localisation.data.ICLocale;
+import com.idega.data.IDOLookup;
 import com.idega.idegaweb.IWApplicationContext;
 import com.idega.presentation.Block;
 import com.idega.presentation.IWContext;
@@ -270,8 +273,18 @@ public class FolderBlock extends Block {
 	}
 	
 	public int getBlockObjectID(){
+		System.out.println("FolderBlock: this._blockObjectID = " + this._blockObjectID);
 		if(this._blockObjectID == -1){
-			this._blockObjectID = this.getICObjectID();
+			try {
+				System.out.println("FolderBlock: this.classname() = " + this.getClassName());
+				ICObject object = this.getICObjectHome().findByClassName(this.getClassName());
+				System.out.println("FolderBlock: object.getPrimaryKey() = " + object.getPrimaryKey());				
+				this._blockObjectID = ((Integer) object.getPrimaryKey()).intValue();
+			} catch (Exception e) {
+				e.printStackTrace();
+				this._blockObjectID = this.getICObjectID();
+				
+			}			
 		}
 		return this._blockObjectID;
 	}
@@ -294,4 +307,8 @@ public class FolderBlock extends Block {
 		this._utilisesCategories = value;
 	}
 
+	private ICObjectHome getICObjectHome() throws RemoteException {
+		return (ICObjectHome) IDOLookup.getHome(ICObject.class);
+	}
+	
 }
