@@ -43,6 +43,7 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 		super(id);
 	}
 	
+	@Override
 	public void initializeAttributes() {
 		addAttribute(getIDColumnName());
 		addAttribute(getColumnBusinessId(), "Business id", true, true, Integer.class, MANY_TO_ONE, com.idega.core.data.ICBusiness.class);
@@ -65,6 +66,7 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 		return "INVALIDATED";
 	}
 
+	@Override
 	public void insertStartData() {
 		//String table = com.idega.data.EntityControl.getManyToManyRelationShipTableName(ICCategory.class, ICObjectInstance.class);
 		String table = IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME;
@@ -107,6 +109,7 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 	public static String getColumnOwnerGroup() {
 		return "OWNER_GROUP";
 	}
+	@Override
 	public String getEntityName() {
 		return getEntityTableName();
 	}
@@ -128,9 +131,11 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 	public void setLocaleId(int id) {
 		setColumn(getColumnLocaleId(), id);
 	}
+	@Override
 	public String getName() {
 		return getStringColumnValue(getColumnName());
 	}
+	@Override
 	public void setName(String name) {
 		setColumn(getColumnName(), name);
 	}
@@ -169,6 +174,7 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 	public String getCategoryType() {
 		return "no_type";
 	}
+	@Override
 	public void setDefaultValues() {
 		setType(getCategoryType());
 	}
@@ -306,13 +312,14 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 		sql.append(" and tree.").append("child_").append(getIDColumnName()).append(" is null ");
 		return sql.toString();
 	}
+	
 	/**
 	 * select * from IC_CATEGORY where CAT_TYPE= 'news'  and IC_CATEGORY_ID not in ( select child_IC_CATEGORY_ID from IC_CATEGORY_tree )"
 	 * 
 	 * @param type
 	 * @return
 	 */
-	private String getRootsNestedSQL(String type) {
+	/*private String getRootsNestedSQL(String type) {
 		StringBuffer sql = new StringBuffer("select * from ");
 		sql.append(getEntityTableName());
 
@@ -321,7 +328,7 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 		sql.append(" select ").append("child_").append(getIDColumnName());
 		sql.append(" from ").append(getEntityTableName()).append("_tree )");
 		return sql.toString();
-	}
+	}*/
 
 	public Collection ejbFindAllByObjectInstance(int iObjectInstanceID) throws FinderException {
 		ICObjectInstance obj = ICObjectBusiness.getInstance().getICObjectInstance(iObjectInstanceID);
