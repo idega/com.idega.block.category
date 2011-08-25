@@ -275,9 +275,7 @@ public class FolderBlock extends Block {
 	public int getBlockObjectID(){
 		if(this._blockObjectID == -1){
 			try {
-				System.out.println("FolderBlock: this.classname() = " + this.getClassName());
 				ICObject object = this.getICObjectHome().findByClassName(this.getClassName());
-				System.out.println("FolderBlock: object.getPrimaryKey() = " + object.getPrimaryKey());				
 				this._blockObjectID = ((Integer) object.getPrimaryKey()).intValue();
 			} catch (Exception e) {
 				e.printStackTrace();
