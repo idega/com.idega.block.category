@@ -13,7 +13,7 @@ import java.sql.Timestamp;
  *
  *  Company: idega</p>
  *
- *@author     <a href="gummi@idega.is">Guğmundur Ágúst Sæmundsson</a>
+ *@author     <a href="gummi@idega.is">GuÃ°mundur ÃgÃºst SÃ¦mundsson</a>
  *@created    15. mars 2002
  *@version    1.0
  */
