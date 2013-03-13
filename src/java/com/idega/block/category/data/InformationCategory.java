@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  *  Copyright: Copyright (c) 2001</p> <p>
  *  Company: idega</p>
  *
- *@author     <a href="gummi@idega.is">Guğmundur Ágúst Sæmundsson</a>
+ *@author     <a href="gummi@idega.is">GuÃ°mundur ÃgÃºst SÃ¦mundsson</a>
  *@created    15. mars 2002
  *@version    1.0
  */
