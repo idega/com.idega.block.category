@@ -27,10 +27,11 @@ import com.idega.data.query.SelectQuery;
 import com.idega.data.query.Table;
 import com.idega.data.query.WildCardColumn;
 
-public class ICCategoryBMPBean extends com.idega.data.TreeableEntityBMPBean implements ICCategory, Category, MetaDataCapable {
+public class ICCategoryBMPBean extends com.idega.data.TreeableEntityBMPBean<Category> implements ICCategory {
 	
-	
-private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "IC_CATEGORY_IC_OBJECT_INSTANCE";
+	private static final long serialVersionUID = -341289376295017614L;
+
+	private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "IC_CATEGORY_IC_OBJECT_INSTANCE";
     private String IC_CATEGORY_COLUMN_NAME = ICCategoryBMPBean.getEntityTableName() + "_ID";
 	private static String IC_OBJECT_INSTANCE_COLUMN_NAME = "IC_OBJECT_INSTANCE_ID";
 	private static String TREE_ORDER_COLUMN_NAME = "TREE_ORDER";

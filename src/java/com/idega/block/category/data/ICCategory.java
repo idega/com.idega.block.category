@@ -19,7 +19,7 @@ import com.idega.data.TreeableEntity;
  * @author Dainis
  *
  */
-public interface ICCategory extends TreeableEntity, IDOLegacyEntity, Category, MetaDataCapable {
+public interface ICCategory extends TreeableEntity<Category>, IDOLegacyEntity, Category {
 
     /**
      * @see com.idega.block.category.data.ICCategoryBMPBean#getBusinessId
