@@ -19,18 +19,17 @@ import com.idega.data.IDOAddRelationshipException;
 import com.idega.data.IDOLookup;
 import com.idega.data.IDORelationshipException;
 import com.idega.data.IDORemoveRelationshipException;
-import com.idega.data.MetaDataCapable;
 import com.idega.data.SimpleQuerier;
-import com.idega.data.TreeableEntityBMPBean;
 import com.idega.data.query.Column;
 import com.idega.data.query.MatchCriteria;
 import com.idega.data.query.SelectQuery;
 import com.idega.data.query.Table;
 import com.idega.data.query.WildCardColumn;
 
-public class ICCategoryBMPBean extends TreeableEntityBMPBean<Category> implements ICCategory, MetaDataCapable {
+public class ICCategoryBMPBean extends com.idega.data.TreeableEntityBMPBean<Category> implements ICCategory {
 
-	private static final long serialVersionUID = -6986816169250993948L;
+	private static final long serialVersionUID = -341289376295017614L;
+
 	private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "IC_CATEGORY_IC_OBJECT_INSTANCE";
     private String IC_CATEGORY_COLUMN_NAME = ICCategoryBMPBean.getEntityTableName() + "_ID";
 	private static String IC_OBJECT_INSTANCE_COLUMN_NAME = "IC_OBJECT_INSTANCE_ID";
