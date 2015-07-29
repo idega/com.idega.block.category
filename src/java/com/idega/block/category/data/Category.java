@@ -7,8 +7,8 @@ package com.idega.block.category.data;
  * @created    14. mars 2002
  * @version    1.0
  */
-public interface Category extends com.idega.core.data.ICTreeNode
-{
+public interface Category extends com.idega.core.data.ICTreeNode<Category>{
+
 	/**
 	 *  Gets the iD of the Category object
 	 *
@@ -33,4 +33,5 @@ public interface Category extends com.idega.core.data.ICTreeNode
 	 * @return    The type value
 	 */
 	public String getType();
+
 }

@@ -21,28 +21,29 @@ import com.idega.data.IDORelationshipException;
 import com.idega.data.IDORemoveRelationshipException;
 import com.idega.data.MetaDataCapable;
 import com.idega.data.SimpleQuerier;
+import com.idega.data.TreeableEntityBMPBean;
 import com.idega.data.query.Column;
 import com.idega.data.query.MatchCriteria;
 import com.idega.data.query.SelectQuery;
 import com.idega.data.query.Table;
 import com.idega.data.query.WildCardColumn;
 
-public class ICCategoryBMPBean extends com.idega.data.TreeableEntityBMPBean implements ICCategory, Category, MetaDataCapable {
-	
-	
-private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "IC_CATEGORY_IC_OBJECT_INSTANCE";
+public class ICCategoryBMPBean extends TreeableEntityBMPBean<Category> implements ICCategory, MetaDataCapable {
+
+	private static final long serialVersionUID = -6986816169250993948L;
+	private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "IC_CATEGORY_IC_OBJECT_INSTANCE";
     private String IC_CATEGORY_COLUMN_NAME = ICCategoryBMPBean.getEntityTableName() + "_ID";
 	private static String IC_OBJECT_INSTANCE_COLUMN_NAME = "IC_OBJECT_INSTANCE_ID";
 	private static String TREE_ORDER_COLUMN_NAME = "TREE_ORDER";
-	
+
 	public ICCategoryBMPBean() {
 		super();
 	}
-	
+
 	public ICCategoryBMPBean(int id) throws SQLException {
 		super(id);
 	}
-	
+
 	@Override
 	public void initializeAttributes() {
 		addAttribute(getIDColumnName());
@@ -113,21 +114,27 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 	public String getEntityName() {
 		return getEntityTableName();
 	}
+	@Override
 	public int getBusinessId() {
 		return getIntColumnValue(getColumnBusinessId());
 	}
+	@Override
 	public void setBusinessId(int id) {
 		setColumn(getColumnBusinessId(), id);
 	}
+	@Override
 	public int getParentId() {
 		return getIntColumnValue(getColumnParentId());
 	}
+	@Override
 	public void setParentId(int id) {
 		setColumn(getColumnParentId(), id);
 	}
+	@Override
 	public int getLocaleId() {
 		return getIntColumnValue(getColumnLocaleId());
 	}
+	@Override
 	public void setLocaleId(int id) {
 		setColumn(getColumnLocaleId(), id);
 	}
@@ -139,38 +146,49 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 	public void setName(String name) {
 		setColumn(getColumnName(), name);
 	}
+	@Override
 	public String getDescription() {
 		return getStringColumnValue(getColumnDescription());
 	}
+	@Override
 	public void setDescription(String description) {
 		setColumn(getColumnDescription(), description);
 	}
+	@Override
 	public boolean getValid() {
 		return getBooleanColumnValue(getColumnValid());
 	}
+	@Override
 	public void setValid(boolean valid) {
 		setColumn(getColumnValid(), valid);
 	}
+	@Override
 	public java.sql.Timestamp getCreated() {
 		return (java.sql.Timestamp) getColumnValue(getColumnCreated());
 	}
+	@Override
 	public void setCreated(java.sql.Timestamp created) {
 		setColumn(getColumnCreated(), created);
 	}
 
+	@Override
 	public java.sql.Timestamp getInvalidationDate() {
 		return (java.sql.Timestamp) getColumnValue(getColumnInvalidationDate());
 	}
+	@Override
 	public void setInvalidationDate(java.sql.Timestamp date) {
 		setColumn(getColumnInvalidationDate(), date);
 	}
 
+	@Override
 	public String getType() {
 		return getStringColumnValue(getColumnType());
 	}
+	@Override
 	public void setType(String type) {
 		setColumn(getColumnType(), type);
 	}
+	@Override
 	public String getCategoryType() {
 		return "no_type";
 	}
@@ -179,6 +197,7 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 		setType(getCategoryType());
 	}
 
+	@Override
 	public String getName(Locale locale) {
 		try {
 			return getCategoryTranslation(locale).getName();
@@ -189,6 +208,7 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 		return getName();
 	}
 
+	@Override
 	public String getDescription(Locale locale) {
 		try {
 			return getCategoryTranslation(locale).getDescription();
@@ -207,15 +227,15 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 		sql.append(" and mt.").append(this.IC_CATEGORY_COLUMN_NAME).append(" = c.").append(this.IC_CATEGORY_COLUMN_NAME);
 		if (order) {
 			sql.append(" order by mt.").append(TREE_ORDER_COLUMN_NAME); //.append(" desc");
-		} 
-        
+		}
+
 		return EntityFinder.getInstance().findAll(ICCategory.class, sql.toString());
 	}
-    
+
     /**
-     * basically returns the same as ejbHomeGetListOfCategoryForObjectInstance() but 
-     * does include only root categories in the list 
-     * 
+     * basically returns the same as ejbHomeGetListOfCategoryForObjectInstance() but
+     * does include only root categories in the list
+     *
      * @param obj
      * @param order
      * @return
@@ -224,42 +244,42 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
     public List ejbHomeGetListOfRootCategoryForObjectInstance(ICObjectInstance obj, boolean order) throws FinderException {
         StringBuffer sql = new StringBuffer();
         /*
-        select cat.* 
-        from IC_CATEGORY cat 
-        
-            LEFT JOIN IC_CATEGORY_tree tree 
-            ON cat.IC_CATEGORY_ID= tree.child_IC_CATEGORY_ID 
-            
-            LEFT JOIN IC_CATEGORY_IC_OBJECT_INSTANCE mt 
-            ON cat.IC_CATEGORY_ID= mt.IC_CATEGORY_ID 
-        where   
-            tree.child_ic_category_id is null    
-            and mt.IC_OBJECT_INSTANCE_ID = 9 
+        select cat.*
+        from IC_CATEGORY cat
+
+            LEFT JOIN IC_CATEGORY_tree tree
+            ON cat.IC_CATEGORY_ID= tree.child_IC_CATEGORY_ID
+
+            LEFT JOIN IC_CATEGORY_IC_OBJECT_INSTANCE mt
+            ON cat.IC_CATEGORY_ID= mt.IC_CATEGORY_ID
+        where
+            tree.child_ic_category_id is null
+            and mt.IC_OBJECT_INSTANCE_ID = 9
         */
         sql.append("select cat.* from ");
         sql.append(getEntityTableName()).append(" cat ");
         sql.append("LEFT JOIN ").append(getEntityTableName()).append("_tree tree ");
-        sql.append("ON cat.").append(getIDColumnName()).append(" = tree.child_").append(getIDColumnName()).append(" ");  
+        sql.append("ON cat.").append(getIDColumnName()).append(" = tree.child_").append(getIDColumnName()).append(" ");
         sql.append("LEFT JOIN ").append(EntityControl.getManyToManyRelationShipTableName(ICCategory.class, ICObjectInstance.class)).append(" mt "); ////
-        sql.append("ON cat.").append(getIDColumnName()).append(" = mt.").append(getIDColumnName()).append(" "); 
+        sql.append("ON cat.").append(getIDColumnName()).append(" = mt.").append(getIDColumnName()).append(" ");
         sql.append("where tree.child_").append(getIDColumnName()).append(" is null ");
         sql.append("and mt.").append(IC_OBJECT_INSTANCE_COLUMN_NAME).append(" = ").append(obj.getID()).append(" ");
         if (order) {
-            sql.append(" order by mt.").append(TREE_ORDER_COLUMN_NAME); 
-        } 
-        
+            sql.append(" order by mt.").append(TREE_ORDER_COLUMN_NAME);
+        }
+
         return EntityFinder.getInstance().findAll(ICCategory.class, sql.toString());
     }
-    
-    
+
+
 	public int ejbHomeGetOrderNumber(Category category, ICObjectInstance instance) throws javax.ejb.FinderException {
 		return ejbHomeGetOrderNumber(category, Integer.toString(instance.getID()));
 	}
 	public int ejbHomeGetOrderNumber(Category category, String objectInstanceId) throws javax.ejb.FinderException {
 		try {
-			String query = "SELECT TREE_ORDER FROM " + 
-			               EntityControl.getManyToManyRelationShipTableName(ICCategory.class, ICObjectInstance.class) + 
-                           " WHERE " + IC_OBJECT_INSTANCE_COLUMN_NAME + " = " + objectInstanceId +  
+			String query = "SELECT TREE_ORDER FROM " +
+			               EntityControl.getManyToManyRelationShipTableName(ICCategory.class, ICObjectInstance.class) +
+                           " WHERE " + IC_OBJECT_INSTANCE_COLUMN_NAME + " = " + objectInstanceId +
                            " AND " + this.IC_CATEGORY_COLUMN_NAME + " = " + category.getID();
             String[] res = SimpleQuerier.executeStringQuery(query);
 			if (res == null || res.length == 0 || res[0] == null) {
@@ -281,7 +301,7 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 		//    }
 	}
 	/**
-	 * 
+	 *
 	 * @param Category type
 	 * @return Collection of category roots of the type
 	 * @throws FinderException
@@ -312,10 +332,10 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 		sql.append(" and tree.").append("child_").append(getIDColumnName()).append(" is null ");
 		return sql.toString();
 	}
-	
+
 	/**
 	 * select * from IC_CATEGORY where CAT_TYPE= 'news'  and IC_CATEGORY_ID not in ( select child_IC_CATEGORY_ID from IC_CATEGORY_tree )"
-	 * 
+	 *
 	 * @param type
 	 * @return
 	 */
@@ -344,6 +364,7 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 		}
 	}
 
+	@Override
 	public ICCategoryTranslation getCategoryTranslation(Locale locale) throws RemoteException {
 		try {
 			ICCategoryTranslationHome home = (ICCategoryTranslationHome) IDOLookup.getHome(ICCategoryTranslation.class);
@@ -355,22 +376,27 @@ private static final String IC_CATEGORY_IC_OBJECT_INSTANCE_MIDDLE_TABLE_NAME = "
 	}
 
 	/** Gimmi 8.04.2003*/
+	@Override
 	public void setOwnerGroupId(int ownerGroupId) {
 		this.setColumn(getColumnOwnerGroup(), ownerGroupId);
 	}
 
+	@Override
 	public int getOwnerGroupId() {
 		return getIntColumnValue(getColumnOwnerGroup());
 	}
 
+	@Override
 	public void addFile(ICFile file) throws IDOAddRelationshipException {
 		this.idoAddTo(file);
 	}
 
+	@Override
 	public void removeFile(ICFile file) throws IDORemoveRelationshipException {
 		this.idoRemoveFrom(file);
 	}
 
+	@Override
 	public Collection getFiles() throws IDORelationshipException {
 		return this.idoGetRelatedEntities(ICFile.class);
 	}

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.idega.block.category.data;
 
@@ -19,7 +19,7 @@ import com.idega.data.TreeableEntity;
  * @author Dainis
  *
  */
-public interface ICCategory extends TreeableEntity, IDOLegacyEntity, Category, MetaDataCapable {
+public interface ICCategory extends TreeableEntity<Category>, IDOLegacyEntity, Category, MetaDataCapable {
 
     /**
      * @see com.idega.block.category.data.ICCategoryBMPBean#getBusinessId
@@ -54,17 +54,20 @@ public interface ICCategory extends TreeableEntity, IDOLegacyEntity, Category, M
     /**
      * @see com.idega.block.category.data.ICCategoryBMPBean#getName
      */
-    public String getName();
+    @Override
+	public String getName();
 
     /**
      * @see com.idega.block.category.data.ICCategoryBMPBean#setName
      */
-    public void setName(String name);
+    @Override
+	public void setName(String name);
 
     /**
      * @see com.idega.block.category.data.ICCategoryBMPBean#getDescription
      */
-    public String getDescription();
+    @Override
+	public String getDescription();
 
     /**
      * @see com.idega.block.category.data.ICCategoryBMPBean#setDescription
@@ -104,7 +107,8 @@ public interface ICCategory extends TreeableEntity, IDOLegacyEntity, Category, M
     /**
      * @see com.idega.block.category.data.ICCategoryBMPBean#getType
      */
-    public String getType();
+    @Override
+	public String getType();
 
     /**
      * @see com.idega.block.category.data.ICCategoryBMPBean#setType
